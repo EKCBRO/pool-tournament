@@ -4,27 +4,27 @@
     "name": "John Smith",
     "image": "https://randomuser.me/api/portraits/men/83.jpg",
     "wins": 1,
-    "losses": 6
+    "losses": 9
   },
   {
     "id": 3,
     "name": "Mike 'the meat grinder' Williams",
     "image": "https://randomuser.me/api/portraits/men/71.jpg",
-    "wins": 6,
-    "losses": 1
+    "wins": 9,
+    "losses": 2
   },
   {
     "id": 4,
     "name": "Emily Davis",
     "image": "https://randomuser.me/api/portraits/women/68.jpg",
     "wins": 0,
-    "losses": 0
+    "losses": 1
   },
   {
     "id": 6,
     "name": "Jessica Garcia",
     "image": "https://randomuser.me/api/portraits/women/29.jpg",
-    "wins": 0,
+    "wins": 1,
     "losses": 0
   },
   {
@@ -52,7 +52,7 @@
     "id": 11,
     "name": "Dan",
     "image": "images/players/dan-11.jpg",
-    "wins": 0,
+    "wins": 1,
     "losses": 0
   }
 ]

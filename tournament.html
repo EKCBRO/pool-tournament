@@ -460,12 +460,17 @@
             }
             
             // Store tournament match info in session storage
-            sessionStorage.setItem('tournamentMatch', JSON.stringify({
+            const matchInfo = {
                 matchId: matchId
-            }));
+            };
+            sessionStorage.setItem('tournamentMatch', JSON.stringify(matchInfo));
+            console.log('💾 Stored tournament match in sessionStorage:', matchInfo);
+            console.log('🔍 Verify sessionStorage:', sessionStorage.getItem('tournamentMatch'));
             
             // Redirect to matchup page
-            window.location.href = `matchup.html?tournament=true&p1=${match.player1.id}&p2=${match.player2.id}`;
+            const matchupUrl = `matchup.html?tournament=true&p1=${match.player1.id}&p2=${match.player2.id}`;
+            console.log('🚀 Redirecting to:', matchupUrl);
+            window.location.href = matchupUrl;
         }
 
         // Load tournament on page load

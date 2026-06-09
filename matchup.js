@@ -39,6 +39,10 @@ async function loadPlayerData() {
         const p2Id = parseInt(urlParams.get('p2'));
         
         console.log('🏆 Tournament check:', { isTournament, p1Id, p2Id });
+        console.log('💾 SessionStorage check:', {
+            hasTournamentMatch: !!sessionStorage.getItem('tournamentMatch'),
+            tournamentData: sessionStorage.getItem('tournamentMatch')
+        });
         
         if (isTournament && p1Id && p2Id) {
             // Set tournament players
@@ -279,6 +283,15 @@ window.toggleWinner = function(playerNum) {
         // Mark stats update in progress
         statsUpdateInProgress = true;
         
+        // Check if this is a tournament match FIRST
+        const tournamentMatch = sessionStorage.getItem('tournamentMatch');
+        console.log('🔍 Checking tournament match status:', {
+            hasTournamentMatch: !!tournamentMatch,
+            tournamentData: tournamentMatch ? JSON.parse(tournamentMatch) : null,
+            winnerId: winnerId,
+            loserId: loserId
+        });
+        
         // Failsafe: ALWAYS clear the flag after 10 seconds max (even if something goes wrong)
         // Needs to be longer than stats + tournament update + fanfare wait time
         const failsafeTimer = setTimeout(() => {
@@ -294,12 +307,12 @@ window.toggleWinner = function(playerNum) {
                 console.error('Stats update error:', err);
             })
             .finally(() => {
-                // Check if this is a tournament match
-                const tournamentMatch = sessionStorage.getItem('tournamentMatch');
-                
                 if (tournamentMatch) {
                     const matchData = JSON.parse(tournamentMatch);
-                    console.log('🏆 Tournament match - updating bracket');
+                    console.log('🏆 Tournament match detected - updating bracket with:', {
+                        matchId: matchData.matchId,
+                        winnerId: winnerId
+                    });
                     
                     // Update tournament bracket
                     fetch('/api/update-tournament', {
@@ -310,13 +323,18 @@ window.toggleWinner = function(playerNum) {
                             winnerId: winnerId
                         })
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log('📡 Tournament update response received:', response.status);
+                        return response.json();
+                    })
                     .then(data => {
+                        console.log('📊 Tournament update result:', data);
                         clearTimeout(failsafeTimer);
                         
                         if (data.success) {
                             // Clear tournament match data
                             sessionStorage.removeItem('tournamentMatch');
+                            console.log('✅ Tournament bracket updated successfully');
                             
                             // Get fanfare info for logging
                             const fanfare = getFanfareSound();
@@ -336,17 +354,18 @@ window.toggleWinner = function(playerNum) {
                             }, 8000);
                         } else {
                             statsUpdateInProgress = false;
-                            console.error('Tournament update failed:', data.error);
-                            alert('Error updating tournament bracket');
+                            console.error('❌ Tournament update failed:', data.error);
+                            alert('Error updating tournament bracket: ' + (data.error || 'Unknown error'));
                         }
                     })
                     .catch(error => {
                         statsUpdateInProgress = false;
                         clearTimeout(failsafeTimer);
-                        console.error('Tournament update error:', error);
-                        alert('Error updating tournament bracket');
+                        console.error('❌ Tournament update request error:', error);
+                        alert('Error updating tournament bracket: ' + error.message);
                     });
                 } else {
+                    console.log('ℹ️ Not a tournament match - regular matchup');
                     // Not a tournament match - normal behavior
                     setTimeout(() => {
                         statsUpdateInProgress = false;
