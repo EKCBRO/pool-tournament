@@ -54,5 +54,12 @@
     "image": "images/players/dan-11.jpg",
     "wins": 2,
     "losses": 0
+  },
+  {
+    "id": 12,
+    "name": "Dave",
+    "image": "images/players/dave-12.jpg",
+    "wins": 0,
+    "losses": 0
   }
 ]
