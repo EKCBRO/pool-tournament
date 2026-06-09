@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/table.jpg') center center / cover no-repeat fixed;
+            min-height: 100vh;
+            position: relative;
+            padding: 40px 20px;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            font-weight: 900;
+            color: #FF1493;
+            text-shadow: 
+                0 0 30px rgba(255, 20, 147, 1),
+                0 0 60px rgba(255, 20, 147, 0.8),
+                3px 3px 6px rgba(0, 0, 0, 1);
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+            -webkit-text-stroke: 2px black;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10002;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        .export-btn, .import-btn {
+            position: fixed;
+            top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10002;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .export-btn {
+            right: 170px;
+        }
+
+        .import-btn {
+            right: 30px;
+        }
+
+        .export-btn:hover, .import-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        #importFile {
+            display: none;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .player-card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+            transform: scale(1.1);
+            box-shadow: 0 3px 8px rgba(220,53,69,0.6);
+        }
+
+        .player-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #FF1493;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+        }
+
+        .player-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .player-stats {
+            font-size: 16px;
+            color: #fff;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .player-stats .wins {
+            color: #00ff00;
+            font-weight: 600;
+        }
+        
+        .player-stats .losses {
+            color: #ff4444;
+            font-weight: 600;
+        }
+
+        .no-players {
+            text-align: center;
+            color: #FFD700;
+            font-size: 24px;
+            margin-top: 100px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .players-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back</a>
+    <button class="export-btn" onclick="exportPlayers()">Export</button>
+    <button class="import-btn" onclick="document.getElementById('importFile').click()">Import</button>
+    <input type="file" id="importFile" accept=".csv,.xls,.xlsx" onchange="importPlayers(event)">
+    
+    <div class="container">
+        <h1>Player Roster</h1>
+        
+        <div class="players-grid" id="playersGrid">
+            <!-- Players will be loaded here -->
+        </div>
+        
+        <div class="no-players" id="noPlayers" style="display: none;">
+            No players registered yet
+        </div>
+    </div>
+
+    <script>
+        async function loadPlayers() {
+            try {
+                const response = await fetch('players.json?t=' + Date.now());
+                const allPlayers = await response.json();
+                
+                const grid = document.getElementById('playersGrid');
+                const noPlayers = document.getElementById('noPlayers');
+                
+                grid.innerHTML = '';
+                
+                if (allPlayers.length === 0) {
+                    noPlayers.style.display = 'block';
+                    return;
+                }
+                
+                allPlayers.forEach((player, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'player-card';
+                    
+                    // Add delete button to ALL players
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.innerHTML = '×';
+                    deleteBtn.onclick = () => deletePlayer(player.id);
+                    card.appendChild(deleteBtn);
+                    
+                    const wins = player.wins || 0;
+                    const losses = player.losses || 0;
+                    
+                    const img = document.createElement('img');
+                    img.src = player.image;
+                    img.alt = player.name;
+                    img.className = 'player-image';
+                    img.onerror = function() { this.src = 'https://via.placeholder.com/150'; };
+                    
+                    const name = document.createElement('div');
+                    name.className = 'player-name';
+                    name.textContent = player.name;
+                    
+                    const stats = document.createElement('div');
+                    stats.className = 'player-stats';
+                    stats.innerHTML = `<span class="wins">${wins}W</span> - <span class="losses">${losses}L</span>`;
+                    
+                    card.appendChild(img);
+                    card.appendChild(name);
+                    card.appendChild(stats);
+                    grid.appendChild(card);
+                });
+                
+            } catch (error) {
+                console.error('Error loading players:', error);
+                document.getElementById('noPlayers').textContent = 'Error loading players';
+                document.getElementById('noPlayers').style.display = 'block';
+            }
+        }
+        
+        async function deletePlayer(playerId) {
+            if (!confirm('Are you sure you want to delete this player?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/delete-player', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: playerId })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to delete player');
+                }
+                
+                // Reload the player list
+                loadPlayers();
+            } catch (error) {
+                console.error('Error deleting player:', error);
+                alert('Error deleting player. Please try again.');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadPlayers);
+        
+        function exportPlayers() {
+            // Export as CSV (Excel-compatible)
+            fetch('players.json?t=' + Date.now())
+                .then(response => response.json())
+                .then(allPlayers => {
+                    // Create CSV content
+                    let csv = 'ID,Name,Wins,Losses,Image\n';
+                    allPlayers.forEach(player => {
+                        csv += `${player.id},"${player.name}",${player.wins},${player.losses},"${player.image}"\n`;
+                    });
+                    
+                    // Create downloadable file
+                    const dataBlob = new Blob([csv], {type: 'text/csv'});
+                    const url = URL.createObjectURL(dataBlob);
+                    
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'players_export.csv';
+                    link.click();
+                    
+                    URL.revokeObjectURL(url);
+                    
+                    alert('Players exported to CSV (Excel-compatible)!');
+                })
+                .catch(error => {
+                    console.error('Export error:', error);
+                    alert('Error exporting players');
+                });
+        }
+
+        function importPlayers(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const content = e.target.result;
+                    const lines = content.split('\n');
+                    const players = [];
+                    
+                    console.log(`Processing ${lines.length} lines from CSV`);
+                    
+                    // Skip header row, parse data rows
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+                        
+                        // Simple CSV parsing - split by comma
+                        const parts = line.split(',');
+                        if (parts.length < 5) {
+                            console.log(`Skipping line ${i}: not enough fields`, line);
+                            continue;
+                        }
+                        
+                        const id = parseInt(parts[0].trim().replace(/"/g, ''));
+                        const name = parts[1].trim().replace(/"/g, '');
+                        const wins = parseInt(parts[2].trim().replace(/"/g, '')) || 0;
+                        const losses = parseInt(parts[3].trim().replace(/"/g, '')) || 0;
+                        const image = parts[4].trim().replace(/"/g, '');
+                        
+                        console.log(`Parsed player: ID=${id}, Name=${name}, Wins=${wins}, Losses=${losses}`);
+                        
+                        if (!isNaN(id) && name) {
+                            players.push({ id, name, wins, losses, image });
+                        } else {
+                            console.log(`Skipping line ${i}: invalid data`, { id, name });
+                        }
+                    }
+                    
+                    console.log(`Found ${players.length} valid players`);
+                    
+                    if (players.length === 0) {
+                        alert('No valid player data found in file');
+                        return;
+                    }
+                    
+                    // Send to server
+                    fetch('/api/import-players', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(players)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`Successfully imported ${players.length} players!`);
+                            location.reload();
+                        } else {
+                            alert('Import failed: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Import error:', error);
+                        alert('Error importing players');
+                    });
+                } catch (error) {
+                    console.error('Parse error:', error);
+                    alert('Error parsing file. Please use a valid CSV file.');
+                }
+            };
+            
+            reader.readAsText(file);
+            // Reset input so the same file can be imported again
+            event.target.value = '';
+        }
+    </script>
+</body>
+</html>

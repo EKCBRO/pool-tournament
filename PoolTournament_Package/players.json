@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "John Smith",
+        "image": "https://randomuser.me/api/portraits/men/83.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 2,
+        "name": "Sarah Johnson",
+        "image": "https://randomuser.me/api/portraits/women/17.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 3,
+        "name": "Mike 'the meat grinder' Williams",
+        "image": "https://randomuser.me/api/portraits/men/71.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 4,
+        "name": "Emily Davis",
+        "image": "https://randomuser.me/api/portraits/women/68.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 5,
+        "name": "David Brown",
+        "image": "https://randomuser.me/api/portraits/men/91.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 6,
+        "name": "Jessica Garcia",
+        "image": "https://randomuser.me/api/portraits/women/29.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 7,
+        "name": "James Martinez",
+        "image": "https://randomuser.me/api/portraits/men/43.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 8,
+        "name": "Lisa Anderson",
+        "image": "https://randomuser.me/api/portraits/women/72.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 9,
+        "name": "Robert Taylor",
+        "image": "https://randomuser.me/api/portraits/men/59.jpg",
+        "wins": 0,
+        "losses": 0
+    },
+    {
+        "id": 10,
+        "name": "Maria Rodriguez",
+        "image": "https://randomuser.me/api/portraits/women/95.jpg",
+        "wins": 0,
+        "losses": 0
+    }
+]

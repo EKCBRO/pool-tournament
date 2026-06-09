@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/table.jpg') center center / cover no-repeat fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #FF1493;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-shadow: 
+                0 0 20px rgba(255, 20, 147, 0.8),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            -webkit-text-stroke: 1px black;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #FFD700;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            color: #000;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #FF1493;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+        }
+
+        .photo-preview {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 4px solid #FF1493;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-preview.empty {
+            color: #888;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-register:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-cancel {
+            background: rgba(100, 100, 100, 0.8);
+            color: #fff;
+            border: 2px solid #666;
+        }
+
+        .btn-cancel:hover {
+            background: rgba(120, 120, 120, 0.9);
+            transform: scale(1.05);
+        }
+
+        .success-message,
+        .error-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #0f0;
+            color: #0f0;
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #f00;
+            color: #f00;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid #FFD700;
+            transition: all 0.3s;
+        }
+
+        .file-input-label:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .file-name {
+            margin-top: 8px;
+            color: #FFD700;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .photo-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .photo-btn {
+            flex: 1;
+            padding: 10px;
+            background: linear-gradient(135deg, #4169E1 0%, #1E90FF 100%);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid #4169E1;
+            transition: all 0.3s;
+        }
+
+        .photo-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(65, 105, 225, 0.6);
+        }
+
+        #cameraView {
+            display: none;
+            margin: 15px 0;
+        }
+
+        #cameraVideo {
+            width: 100%;
+            max-width: 400px;
+            border: 3px solid #FFD700;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .camera-btn {
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .capture-btn {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+        }
+
+        .cancel-camera-btn {
+            background: rgba(100, 100, 100, 0.8);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Player Registration</h1>
+        
+        <div class="success-message" id="successMessage">
+            Player registered successfully! Redirecting to matchup...
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="playerName">Player Name *</label>
+                <input 
+                    type="text" 
+                    id="playerName" 
+                    placeholder="Enter your name or nickname" 
+                    maxlength="50"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Photo Preview</label>
+                <div class="photo-preview" id="photoPreview">
+                    <div style="color: #FFD700;">No photo selected</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="playerPhoto">Add Photo *</label>
+                
+                <div class="photo-options">
+                    <div class="photo-btn" onclick="openCamera()">
+                        📷 Take Photo
+                    </div>
+                    <label for="playerPhoto" class="photo-btn" style="margin: 0; cursor: pointer;">
+                        📁 Upload File
+                    </label>
+                </div>
+
+                <div id="cameraView">
+                    <video id="cameraVideo" autoplay playsinline></video>
+                    <div class="camera-controls">
+                        <button type="button" class="camera-btn capture-btn" onclick="capturePhoto()">
+                            📸 Capture
+                        </button>
+                        <button type="button" class="camera-btn cancel-camera-btn" onclick="closeCamera()">
+                            ✕ Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <input 
+                    type="file" 
+                    id="playerPhoto" 
+                    accept="image/*"
+                    style="display: none;"
+                >
+                <div class="file-name" id="fileName">No file chosen</div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-cancel" onclick="window.location.href='index.html'">
+                    Cancel
+                </button>
+                <button type="submit" class="btn-register">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>

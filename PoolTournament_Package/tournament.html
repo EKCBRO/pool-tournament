@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Bracket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/table.jpg') center center / cover no-repeat fixed;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10002;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.8);
+        }
+
+        .new-tournament-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10002;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .new-tournament-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .bracket {
+            display: flex;
+            justify-content: space-around;
+            gap: 40px;
+            overflow-x: auto;
+            padding: 20px;
+        }
+
+        .round {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-width: 250px;
+        }
+
+        .round-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .match {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .match:hover {
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            transform: scale(1.02);
+        }
+
+        .match.completed {
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .match.active {
+            border-color: #FF6B6B;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 107, 0.9); }
+        }
+
+        .player {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .player.winner {
+            background: rgba(76, 175, 80, 0.4);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .player.loser {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .match-number {
+            text-align: center;
+            color: #FFD700;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .champion {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .champion h2 {
+            color: #FFD700;
+            font-size: 36px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        .champion .player-name {
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .empty-state h2 {
+            color: #FFD700;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state p {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back</a>
+    <button class="new-tournament-btn" onclick="createNewTournament()">New Tournament</button>
+    
+    <div class="container">
+        <h1>Tournament Bracket</h1>
+        
+        <div id="bracketContainer"></div>
+        <div id="championContainer"></div>
+    </div>
+
+    <script>
+        let tournament = null;
+
+        // Load tournament data
+        function loadTournament() {
+            fetch('tournament.json?t=' + Date.now())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No tournament found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    tournament = data;
+                    renderBracket();
+                })
+                .catch(error => {
+                    console.log('No active tournament');
+                    showEmptyState();
+                });
+        }
+
+        function showEmptyState() {
+            document.getElementById('bracketContainer').innerHTML = `
+                <div class="empty-state">
+                    <h2>No Active Tournament</h2>
+                    <p>Click "New Tournament" to create a bracket with all registered players</p>
+                </div>
+            `;
+        }
+
+        function createNewTournament() {
+            if (tournament && !confirm('This will create a new tournament and discard the current one. Continue?')) {
+                return;
+            }
+
+            // Fetch all players
+            fetch('players.json?t=' + Date.now())
+                .then(response => response.json())
+                .then(players => {
+                    if (players.length < 2) {
+                        alert('Need at least 2 players to create a tournament!');
+                        return;
+                    }
+
+                    // Create tournament bracket
+                    fetch('/api/create-tournament', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ players: players })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`Tournament created with ${players.length} players!`);
+                            location.reload();
+                        } else {
+                            alert('Failed to create tournament: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Tournament creation error:', error);
+                        alert('Error creating tournament');
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading players:', error);
+                    alert('Error loading players');
+                });
+        }
+
+        function renderBracket() {
+            if (!tournament) return;
+
+            const container = document.getElementById('bracketContainer');
+            let html = '';
+            
+            // Render groups if they exist
+            if (tournament.groups && tournament.groups.length > 0) {
+                html += '<h2 style="color: #FFD700; text-align: center; margin: 40px 0 20px 0; font-size: 32px;">Group Stage</h2>';
+                html += '<div class="bracket">';
+                
+                tournament.groups.forEach((group, groupIndex) => {
+                    html += `
+                        <div class="round">
+                            <div class="round-title">${group.name}</div>
+                    `;
+                    
+                    // Show matches
+                    group.matches.forEach((match, matchIndex) => {
+                        const isCompleted = match.winner !== null;
+                        const isActive = !isCompleted && match.player1 && match.player2;
+                        
+                        html += `
+                            <div class="match ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" 
+                                 onclick="${isActive ? `playMatchById(${match.id})` : ''}">
+                                <div class="match-number">Match ${match.id}</div>
+                                <div class="player ${match.winner === match.player1?.id ? 'winner' : ''} ${match.winner && match.winner !== match.player1?.id ? 'loser' : ''}">
+                                    ${match.player1 ? match.player1.name : 'TBD'}
+                                </div>
+                                <div class="player ${match.winner === match.player2?.id ? 'winner' : ''} ${match.winner && match.winner !== match.player2?.id ? 'loser' : ''}">
+                                    ${match.player2 ? match.player2.name : 'TBD'}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    // Show standings if available
+                    if (group.standings && group.standings.length > 0) {
+                        html += '<div style="margin-top: 20px; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 8px;">';
+                        html += '<div style="color: #FFD700; font-size: 14px; font-weight: 700; margin-bottom: 10px; text-align: center;">Standings</div>';
+                        group.standings.forEach((record, idx) => {
+                            const isQualified = idx < 2;
+                            html += `<div style="padding: 5px; color: ${isQualified ? '#4CAF50' : 'white'}; font-size: 12px;">
+                                ${idx + 1}. ${record.player.name} (${record.wins}-${record.losses})
+                                ${isQualified ? '✓' : ''}
+                            </div>`;
+                        });
+                        html += '</div>';
+                    }
+                    
+                    html += '</div>';
+                });
+                
+                html += '</div>';
+            }
+            
+            // Render knockout rounds
+            if (tournament.rounds && tournament.rounds.length > 0) {
+                html += '<h2 style="color: #FFD700; text-align: center; margin: 40px 0 20px 0; font-size: 32px;">Knockout Stage</h2>';
+                html += '<div class="bracket">';
+                
+                tournament.rounds.forEach((round, roundIndex) => {
+                    html += `
+                        <div class="round">
+                            <div class="round-title">${round.name}</div>
+                    `;
+                    
+                    round.matches.forEach((match, matchIndex) => {
+                        const isCompleted = match.winner !== null;
+                        const isActive = !isCompleted && match.player1 && match.player2;
+                        
+                        html += `
+                            <div class="match ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" 
+                                 onclick="${isActive ? `playMatchById(${match.id})` : ''}">
+                                <div class="match-number">Match ${match.id}</div>
+                                <div class="player ${match.winner === match.player1?.id ? 'winner' : ''} ${match.winner && match.winner !== match.player1?.id ? 'loser' : ''}">
+                                    ${match.player1 ? match.player1.name : 'TBD'}
+                                </div>
+                                <div class="player ${match.winner === match.player2?.id ? 'winner' : ''} ${match.winner && match.winner !== match.player2?.id ? 'loser' : ''}">
+                                    ${match.player2 ? match.player2.name : 'TBD'}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+                });
+                
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+
+            // Show champion if tournament is complete
+            if (tournament.champion) {
+                document.getElementById('championContainer').innerHTML = `
+                    <div class="champion">
+                        <h2>🏆 Champion 🏆</h2>
+                        <div class="player-name">${tournament.champion.name}</div>
+                    </div>
+                `;
+            }
+        }
+
+        function playMatchById(matchId) {
+            // Find the match in groups or rounds
+            let match = null;
+            
+            // Check groups
+            if (tournament.groups) {
+                for (const group of tournament.groups) {
+                    match = group.matches.find(m => m.id === matchId);
+                    if (match) break;
+                }
+            }
+            
+            // Check knockout rounds
+            if (!match && tournament.rounds) {
+                for (const round of tournament.rounds) {
+                    match = round.matches.find(m => m.id === matchId);
+                    if (match) break;
+                }
+            }
+            
+            if (!match) {
+                console.error('Match not found:', matchId);
+                return;
+            }
+            
+            // Store tournament match info in session storage
+            sessionStorage.setItem('tournamentMatch', JSON.stringify({
+                matchId: matchId
+            }));
+            
+            // Redirect to matchup page
+            window.location.href = `matchup.html?tournament=true&p1=${match.player1.id}&p2=${match.player2.id}`;
+        }
+
+        // Load tournament on page load
+        loadTournament();
+    </script>
+</body>
+</html>
