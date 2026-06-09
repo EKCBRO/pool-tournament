@@ -242,7 +242,14 @@
 
         // Load tournament data
         function loadTournament() {
-            fetch('tournament.json?t=' + Date.now())
+            console.log('🔄 Loading tournament data...');
+            fetch('tournament.json?t=' + Date.now(), {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('No tournament found');
@@ -250,6 +257,7 @@
                     return response.json();
                 })
                 .then(data => {
+                    console.log('✅ Tournament loaded:', data);
                     tournament = data;
                     renderBracket();
                 })
@@ -434,6 +442,20 @@
             
             if (!match) {
                 console.error('Match not found:', matchId);
+                return;
+            }
+            
+            console.log('🎯 Starting match:', {
+                matchId: matchId,
+                player1: match.player1.name,
+                player2: match.player2.name,
+                currentWinner: match.winner
+            });
+            
+            // Check if match already has a winner
+            if (match.winner !== null) {
+                console.warn('⚠️ Match already completed with winner ID:', match.winner);
+                alert('This match has already been completed!');
                 return;
             }
             

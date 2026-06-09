@@ -331,7 +331,8 @@ window.toggleWinner = function(playerNum) {
                             setTimeout(() => {
                                 statsUpdateInProgress = false; // Clear flag right before redirect
                                 console.log('🔄 Redirecting to tournament page');
-                                window.location.href = 'tournament.html';
+                                // Use location.replace to prevent caching and force reload
+                                window.location.replace('tournament.html?refresh=' + Date.now());
                             }, 8000);
                         } else {
                             statsUpdateInProgress = false;

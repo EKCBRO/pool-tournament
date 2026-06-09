@@ -1,0 +1,336 @@
+{
+  "rounds": [
+    {
+      "name": "Semi-Finals",
+      "matches": [
+        {
+          "id": 13,
+          "player1": null,
+          "player2": null,
+          "winner": null
+        },
+        {
+          "id": 14,
+          "player1": null,
+          "player2": null,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "Finals",
+      "matches": [
+        {
+          "id": 15,
+          "player1": null,
+          "player2": null,
+          "winner": null
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Group A",
+      "players": [
+        {
+          "id": 4,
+          "name": "Emily Davis",
+          "image": "https://randomuser.me/api/portraits/women/68.jpg",
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "id": 11,
+          "name": "Dan",
+          "image": "images/players/dan-11.jpg",
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "id": 7,
+          "name": "James Martinez",
+          "image": "https://randomuser.me/api/portraits/men/43.jpg",
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "id": 8,
+          "name": "Lisa Anderson",
+          "image": "https://randomuser.me/api/portraits/women/72.jpg",
+          "wins": 0,
+          "losses": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": 1,
+          "player1": {
+            "id": 4,
+            "name": "Emily Davis",
+            "image": "https://randomuser.me/api/portraits/women/68.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 11,
+            "name": "Dan",
+            "image": "images/players/dan-11.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        },
+        {
+          "id": 2,
+          "player1": {
+            "id": 4,
+            "name": "Emily Davis",
+            "image": "https://randomuser.me/api/portraits/women/68.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 7,
+            "name": "James Martinez",
+            "image": "https://randomuser.me/api/portraits/men/43.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        },
+        {
+          "id": 3,
+          "player1": {
+            "id": 4,
+            "name": "Emily Davis",
+            "image": "https://randomuser.me/api/portraits/women/68.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 8,
+            "name": "Lisa Anderson",
+            "image": "https://randomuser.me/api/portraits/women/72.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        },
+        {
+          "id": 4,
+          "player1": {
+            "id": 11,
+            "name": "Dan",
+            "image": "images/players/dan-11.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 7,
+            "name": "James Martinez",
+            "image": "https://randomuser.me/api/portraits/men/43.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        },
+        {
+          "id": 5,
+          "player1": {
+            "id": 11,
+            "name": "Dan",
+            "image": "images/players/dan-11.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 8,
+            "name": "Lisa Anderson",
+            "image": "https://randomuser.me/api/portraits/women/72.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        },
+        {
+          "id": 6,
+          "player1": {
+            "id": 7,
+            "name": "James Martinez",
+            "image": "https://randomuser.me/api/portraits/men/43.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 8,
+            "name": "Lisa Anderson",
+            "image": "https://randomuser.me/api/portraits/women/72.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 0
+        }
+      ],
+      "standings": []
+    },
+    {
+      "name": "Group B",
+      "players": [
+        {
+          "id": 1,
+          "name": "John Smith",
+          "image": "https://randomuser.me/api/portraits/men/83.jpg",
+          "wins": 1,
+          "losses": 3
+        },
+        {
+          "id": 3,
+          "name": "Mike 'the meat grinder' Williams",
+          "image": "https://randomuser.me/api/portraits/men/71.jpg",
+          "wins": 3,
+          "losses": 1
+        },
+        {
+          "id": 10,
+          "name": "Maria Rodriguez",
+          "image": "https://randomuser.me/api/portraits/women/95.jpg",
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "id": 6,
+          "name": "Jessica Garcia",
+          "image": "https://randomuser.me/api/portraits/women/29.jpg",
+          "wins": 0,
+          "losses": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": 7,
+          "player1": {
+            "id": 1,
+            "name": "John Smith",
+            "image": "https://randomuser.me/api/portraits/men/83.jpg",
+            "wins": 1,
+            "losses": 3
+          },
+          "player2": {
+            "id": 3,
+            "name": "Mike 'the meat grinder' Williams",
+            "image": "https://randomuser.me/api/portraits/men/71.jpg",
+            "wins": 3,
+            "losses": 1
+          },
+          "winner": null,
+          "groupNum": 1
+        },
+        {
+          "id": 8,
+          "player1": {
+            "id": 1,
+            "name": "John Smith",
+            "image": "https://randomuser.me/api/portraits/men/83.jpg",
+            "wins": 1,
+            "losses": 3
+          },
+          "player2": {
+            "id": 10,
+            "name": "Maria Rodriguez",
+            "image": "https://randomuser.me/api/portraits/women/95.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 1
+        },
+        {
+          "id": 9,
+          "player1": {
+            "id": 1,
+            "name": "John Smith",
+            "image": "https://randomuser.me/api/portraits/men/83.jpg",
+            "wins": 1,
+            "losses": 3
+          },
+          "player2": {
+            "id": 6,
+            "name": "Jessica Garcia",
+            "image": "https://randomuser.me/api/portraits/women/29.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 1
+        },
+        {
+          "id": 10,
+          "player1": {
+            "id": 3,
+            "name": "Mike 'the meat grinder' Williams",
+            "image": "https://randomuser.me/api/portraits/men/71.jpg",
+            "wins": 3,
+            "losses": 1
+          },
+          "player2": {
+            "id": 10,
+            "name": "Maria Rodriguez",
+            "image": "https://randomuser.me/api/portraits/women/95.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 1
+        },
+        {
+          "id": 11,
+          "player1": {
+            "id": 3,
+            "name": "Mike 'the meat grinder' Williams",
+            "image": "https://randomuser.me/api/portraits/men/71.jpg",
+            "wins": 3,
+            "losses": 1
+          },
+          "player2": {
+            "id": 6,
+            "name": "Jessica Garcia",
+            "image": "https://randomuser.me/api/portraits/women/29.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 1
+        },
+        {
+          "id": 12,
+          "player1": {
+            "id": 10,
+            "name": "Maria Rodriguez",
+            "image": "https://randomuser.me/api/portraits/women/95.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "player2": {
+            "id": 6,
+            "name": "Jessica Garcia",
+            "image": "https://randomuser.me/api/portraits/women/29.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "winner": null,
+          "groupNum": 1
+        }
+      ],
+      "standings": []
+    }
+  ],
+  "champion": null,
+  "created": "2026-06-09 20:26:30.713057"
+}

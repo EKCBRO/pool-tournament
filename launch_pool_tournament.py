@@ -421,13 +421,16 @@ class PoolTournamentHandler(http.server.SimpleHTTPRequestHandler):
             for g_idx, group in enumerate(tournament.get('groups', [])):
                 for match in group['matches']:
                     if match['id'] == match_id:
+                        # Log before update
+                        log(f"   📝 Before update - Match {match_id}: winner={match.get('winner')}")
                         match['winner'] = winner_id
                         match_found = True
                         is_group_match = True
                         group_index = g_idx
                         winner = match['player1'] if match['player1']['id'] == winner_id else match['player2']
                         loser = match['player2'] if match['player1']['id'] == winner_id else match['player1']
-                        log(f"   ✓ Group {chr(65 + g_idx)} match: {winner['name']} defeated {loser['name']}")
+                        log(f"   ✓ Group {chr(65 + g_idx)} match {match_id}: {winner['name']} (ID={winner_id}) defeated {loser['name']}")
+                        log(f"   📝 After update - Match {match_id}: winner={match['winner']}")
                         break
                 if match_found:
                     break

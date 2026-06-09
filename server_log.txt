@@ -1,0 +1,8 @@
+20:31:08.805 - 🎱 Pool Tournament App
+20:31:08.805 - ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+20:31:08.805 - Server running at: http://localhost:8000
+20:31:08.805 - Opening in your default browser...
+20:31:08.806 - 
+Press Ctrl+C to stop the server and close the app
+20:31:08.806 - ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+20:31:08.806 - 🚀 Server ready and listening for requests...
