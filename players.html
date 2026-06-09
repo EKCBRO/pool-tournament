@@ -295,6 +295,41 @@
     </div>
 
     <script>
+        function createPlayerCard(player) {
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            
+            // Add delete button to ALL players
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '×';
+            deleteBtn.onclick = () => deletePlayer(player.id);
+            card.appendChild(deleteBtn);
+            
+            const wins = player.wins || 0;
+            const losses = player.losses || 0;
+            
+            const img = document.createElement('img');
+            img.src = player.image;
+            img.alt = player.name;
+            img.className = 'player-image';
+            img.onerror = function() { this.src = 'https://via.placeholder.com/150'; };
+            
+            const name = document.createElement('div');
+            name.className = 'player-name';
+            name.textContent = player.name;
+            
+            const stats = document.createElement('div');
+            stats.className = 'player-stats';
+            stats.innerHTML = `<span class="wins">${wins}W</span> - <span class="losses">${losses}L</span>`;
+            
+            card.appendChild(img);
+            card.appendChild(name);
+            card.appendChild(stats);
+            
+            return card;
+        }
+        
         async function loadPlayers() {
             try {
                 const response = await fetch('players.json?t=' + Date.now());
@@ -310,38 +345,14 @@
                     return;
                 }
                 
-                allPlayers.forEach((player, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'player-card';
-                    
-                    // Add delete button to ALL players
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete-btn';
-                    deleteBtn.innerHTML = '×';
-                    deleteBtn.onclick = () => deletePlayer(player.id);
-                    card.appendChild(deleteBtn);
-                    
-                    const wins = player.wins || 0;
-                    const losses = player.losses || 0;
-                    
-                    const img = document.createElement('img');
-                    img.src = player.image;
-                    img.alt = player.name;
-                    img.className = 'player-image';
-                    img.onerror = function() { this.src = 'https://via.placeholder.com/150'; };
-                    
-                    const name = document.createElement('div');
-                    name.className = 'player-name';
-                    name.textContent = player.name;
-                    
-                    const stats = document.createElement('div');
-                    stats.className = 'player-stats';
-                    stats.innerHTML = `<span class="wins">${wins}W</span> - <span class="losses">${losses}L</span>`;
-                    
-                    card.appendChild(img);
-                    card.appendChild(name);
-                    card.appendChild(stats);
-                    grid.appendChild(card);
+                // Add players twice for seamless loop
+                allPlayers.forEach(player => {
+                    grid.appendChild(createPlayerCard(player));
+                });
+                
+                // Clone for infinite carousel effect
+                allPlayers.forEach(player => {
+                    grid.appendChild(createPlayerCard(player));
                 });
                 
             } catch (error) {
@@ -514,9 +525,10 @@
                 // Scroll right (content moves left)
                 wrapper.scrollLeft += scrollSpeed;
                 
-                // Check if we've reached the end
-                if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 5) {
-                    // Loop back to start
+                // Seamless loop: reset to beginning when we reach the midpoint
+                // (where the duplicated cards start)
+                const maxScroll = wrapper.scrollWidth / 2;
+                if (wrapper.scrollLeft >= maxScroll) {
                     wrapper.scrollLeft = 0;
                 }
             }, scrollDelay);
