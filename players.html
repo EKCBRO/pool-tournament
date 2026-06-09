@@ -36,6 +36,27 @@
             z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        .container::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        
+        .container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 5px;
+        }
+        
+        .container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
         }
 
         h1 {
@@ -80,7 +101,7 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
         }
 
-        .export-btn, .import-btn {
+        .export-btn, .import-btn, .autoscroll-btn {
             position: fixed;
             top: 30px;
             padding: 10px 20px;
@@ -100,16 +121,30 @@
         }
 
         .export-btn {
-            right: 170px;
+            right: 310px;
         }
 
         .import-btn {
+            right: 170px;
+        }
+        
+        .autoscroll-btn {
             right: 30px;
         }
+        
+        .autoscroll-btn.active {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+        }
 
-        .export-btn:hover, .import-btn:hover {
+        .export-btn:hover, .import-btn:hover, .autoscroll-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+        
+        .autoscroll-btn.active:hover {
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.8);
         }
 
         #importFile {
@@ -226,6 +261,7 @@
     <a href="index.html" class="back-btn">← Back</a>
     <button class="export-btn" onclick="exportPlayers()">Export</button>
     <button class="import-btn" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="autoscroll-btn active" id="autoscrollBtn" onclick="toggleAutoScroll()">Auto Scroll</button>
     <input type="file" id="importFile" accept=".csv,.xls,.xlsx" onchange="importPlayers(event)">
     
     <div class="container">
@@ -322,8 +358,6 @@
                 alert('Error deleting player. Please try again.');
             }
         }
-        
-        document.addEventListener('DOMContentLoaded', loadPlayers);
         
         function exportPlayers() {
             // Export as CSV (Excel-compatible)
@@ -431,6 +465,75 @@
             // Reset input so the same file can be imported again
             event.target.value = '';
         }
+        
+        // Auto-scroll functionality
+        let autoScrollInterval = null;
+        let isAutoScrolling = true;
+        const scrollSpeed = 1; // pixels per frame
+        const scrollDelay = 30; // milliseconds between frames
+        
+        function toggleAutoScroll() {
+            const btn = document.getElementById('autoscrollBtn');
+            isAutoScrolling = !isAutoScrolling;
+            
+            if (isAutoScrolling) {
+                btn.classList.add('active');
+                startAutoScroll();
+            } else {
+                btn.classList.remove('active');
+                stopAutoScroll();
+            }
+        }
+        
+        function startAutoScroll() {
+            if (autoScrollInterval) return; // Already running
+            
+            const container = document.querySelector('.container');
+            
+            autoScrollInterval = setInterval(() => {
+                if (!isAutoScrolling) return;
+                
+                // Scroll down
+                container.scrollTop += scrollSpeed;
+                
+                // Check if we've reached the bottom
+                if (container.scrollTop + container.clientHeight >= container.scrollHeight - 5) {
+                    // Wait a bit at the bottom, then loop back to top
+                    setTimeout(() => {
+                        container.scrollTop = 0;
+                    }, 2000);
+                }
+            }, scrollDelay);
+        }
+        
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+        
+        // Pause auto-scroll when user manually scrolls or interacts
+        document.querySelector('.container').addEventListener('wheel', () => {
+            if (isAutoScrolling) {
+                const btn = document.getElementById('autoscrollBtn');
+                isAutoScrolling = false;
+                btn.classList.remove('active');
+                stopAutoScroll();
+            }
+        }, { passive: true });
+        
+        // Start auto-scroll when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPlayers().then(() => {
+                // Give the page a moment to render, then start scrolling
+                setTimeout(() => {
+                    if (isAutoScrolling) {
+                        startAutoScroll();
+                    }
+                }, 1000);
+            });
+        });
     </script>
 </body>
 </html>

@@ -46,13 +46,13 @@
     "name": "Maria Rodriguez",
     "image": "https://randomuser.me/api/portraits/women/95.jpg",
     "wins": 0,
-    "losses": 0
+    "losses": 1
   },
   {
     "id": 11,
     "name": "Dan",
     "image": "images/players/dan-11.jpg",
-    "wins": 1,
+    "wins": 2,
     "losses": 0
   }
 ]

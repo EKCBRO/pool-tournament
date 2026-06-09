@@ -98,7 +98,7 @@
             "wins": 1,
             "losses": 0
           },
-          "winner": null,
+          "winner": 11,
           "groupNum": 0
         },
         {
@@ -178,7 +178,52 @@
           "groupNum": 0
         }
       ],
-      "standings": []
+      "standings": [
+        {
+          "player": {
+            "id": 11,
+            "name": "Dan",
+            "image": "images/players/dan-11.jpg",
+            "wins": 1,
+            "losses": 0
+          },
+          "wins": 1,
+          "losses": 0
+        },
+        {
+          "player": {
+            "id": 10,
+            "name": "Maria Rodriguez",
+            "image": "https://randomuser.me/api/portraits/women/95.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "wins": 0,
+          "losses": 1
+        },
+        {
+          "player": {
+            "id": 8,
+            "name": "Lisa Anderson",
+            "image": "https://randomuser.me/api/portraits/women/72.jpg",
+            "wins": 0,
+            "losses": 0
+          },
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "player": {
+            "id": 3,
+            "name": "Mike 'the meat grinder' Williams",
+            "image": "https://randomuser.me/api/portraits/men/71.jpg",
+            "wins": 9,
+            "losses": 2
+          },
+          "wins": 0,
+          "losses": 0
+        }
+      ]
     },
     {
       "name": "Group B",

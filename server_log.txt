@@ -124,3 +124,98 @@ Press Ctrl+C to stop the server and close the app
 20:35:20.985 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
 20:35:20.986 - 📄 GET request: /images/table.jpg
 20:35:20.988 - 📄 GET request: /players.json?t=1781033720684
+20:36:39.173 - 📄 GET request: /players.json?t=1781033798859
+20:36:40.475 - 📄 GET request: /index.html
+20:36:40.791 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail.png
+20:36:40.858 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(1).png
+20:36:40.859 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(2).png
+20:36:40.861 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(3).png
+20:36:40.862 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(4).png
+20:36:40.864 - 📄 GET request: /matchup.js
+20:36:41.102 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(5).png
+20:36:41.170 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(8).png
+20:36:41.171 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
+20:36:41.172 - 📄 GET request: /images/table.jpg
+20:36:41.176 - 📄 GET request: /players.json?t=1781033800868
+20:36:41.491 - 📄 GET request: /favicon.ico
+20:36:49.373 - 📄 GET request: /players.html
+20:36:49.675 - 📄 GET request: /players.json?t=1781033809392
+20:36:49.723 - 📄 GET request: /images/table.jpg
+20:36:49.983 - 📄 GET request: /images/players/dan-11.jpg
+20:36:52.113 - 📄 GET request: /index.html
+20:36:52.167 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail.png
+20:36:52.369 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(1).png
+20:36:52.446 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(2).png
+20:36:52.448 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(3).png
+20:36:52.449 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(4).png
+20:36:52.450 - 📄 GET request: /matchup.js
+20:36:52.473 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(5).png
+20:36:52.673 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(8).png
+20:36:52.751 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
+20:36:52.752 - 📄 GET request: /images/table.jpg
+20:36:52.767 - 📄 GET request: /players.json?t=1781033812453
+20:37:56.771 - 📄 GET request: /players.json?t=1781033876466
+20:37:59.377 - 📄 GET request: /index.html
+20:37:59.682 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail.png
+20:37:59.723 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(1).png
+20:37:59.724 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(2).png
+20:37:59.725 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(3).png
+20:37:59.725 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(4).png
+20:37:59.726 - 📄 GET request: /matchup.js
+20:37:59.994 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(5).png
+20:38:00.028 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(8).png
+20:38:00.029 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
+20:38:00.029 - 📄 GET request: /images/table.jpg
+20:38:00.031 - 📄 GET request: /players.json?t=1781033879728
+20:38:00.340 - 📄 GET request: /favicon.ico
+20:38:37.957 - 📄 GET request: /tournament.html
+20:38:38.259 - 📄 GET request: /tournament.json?t=1781033917972
+20:38:38.297 - 📄 GET request: /images/table.jpg
+20:38:44.659 - 📄 GET request: /matchup.html?tournament=true&p1=10&p2=11
+20:38:44.686 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail.png
+20:38:44.912 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(1).png
+20:38:44.995 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(2).png
+20:38:44.996 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(3).png
+20:38:44.998 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(4).png
+20:38:44.999 - 📄 GET request: /matchup.js
+20:38:45.000 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(5).png
+20:38:45.222 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(8).png
+20:38:45.309 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
+20:38:45.310 - 📄 GET request: /images/table.jpg
+20:38:45.313 - 📄 GET request: /players.json?t=1781033925002
+20:38:45.624 - 📄 GET request: /images/players/dan-11.jpg
+20:38:45.882 - 📄 GET request: /sounds/faceoff.wav
+20:38:45.951 - 📄 GET request: /favicon.ico
+20:38:50.971 - 📨 POST request: /api/update-stats
+20:38:50.971 - 📊 Updating stats: winner=11, loser=10
+20:38:50.971 -    ✓ Loser Maria Rodriguez now has 1 losses
+20:38:50.971 -    ✓ Winner Dan now has 2 wins
+20:38:50.972 - 💾 Stats saved successfully
+20:38:50.973 - ✅ Response sent to browser
+20:38:50.974 - 📄 GET request: /sounds/fanfare.wav
+20:38:51.228 - 📨 POST request: /api/update-tournament
+20:38:51.228 - 🏆 Updating tournament: Match ID 2, Winner ID 11
+20:38:51.229 -    📝 Before update - Match 2: winner=None
+20:38:51.229 -    ✓ Group A match 2: Dan (ID=11) defeated Maria Rodriguez
+20:38:51.229 -    📝 After update - Match 2: winner=11
+20:38:51.229 -    📊 Group A standings updated: Dan (1-0), Maria Rodriguez (0-1), Lisa Anderson (0-0), Mike 'the meat grinder' Williams (0-0)
+20:38:51.231 - ✅ Tournament updated
+20:38:59.242 - 📄 GET request: /tournament.html?refresh=1781033939234
+20:38:59.558 - 📄 GET request: /tournament.json?t=1781033939261
+20:38:59.574 - 📄 GET request: /images/table.jpg
+20:39:09.658 - 📄 GET request: /index.html
+20:39:09.895 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail.png
+20:39:09.914 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(1).png
+20:39:09.989 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(2).png
+20:39:09.990 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(3).png
+20:39:09.991 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(4).png
+20:39:09.992 - 📄 GET request: /matchup.js
+20:39:10.199 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(5).png
+20:39:10.220 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(8).png
+20:39:10.297 - 📄 GET request: /images/Black%20and%20Blue%20Modern%20Game%20Night%20YouTube%20Thumbnail%20(9).png
+20:39:10.298 - 📄 GET request: /images/table.jpg
+20:39:10.303 - 📄 GET request: /players.json?t=1781033949994
+20:42:30.063 - 📄 GET request: /players.html
+20:42:30.194 - 📄 GET request: /players.json?t=1781034150075
+20:42:30.315 - 📄 GET request: /images/table.jpg
+20:42:30.400 - 📄 GET request: /images/players/dan-11.jpg
